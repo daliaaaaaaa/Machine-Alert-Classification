@@ -9,7 +9,7 @@ app = Flask(__name__)
 model = joblib.load('lstm_model.pkl')
 scaler = joblib.load('scaler.pkl')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/detect', methods=['POST'])
 def predict():
     # Get the data from the request
     data = request.json
@@ -39,6 +39,9 @@ def predict():
 
     # Convert predictions to list for JSON response
     return jsonify(predictions.flatten().tolist())
+
+
+@app.route('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
